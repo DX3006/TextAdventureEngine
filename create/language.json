@@ -1,0 +1,108 @@
+{
+    "en-US":{
+        "menu":{
+            "by":"Made by: DX",
+            "buttonNew":"New",
+            "buttonSave":"Save",
+            "confirmSave":"Confirm",
+            "buttonLoad":"Load",
+            "confirmLoad":"Confirm",
+            "buttonImport":"Import",
+            "buttonExport":"Export",
+            "addScene":"Add Scene"
+        },
+        "scene":{
+            "InitialSceneLabel":"Initial Scene",
+            "SceneLabel":"Scene:",
+            "colorLabel":"Color:",
+            "titleLabel":"Title:",
+            "textLabel":"Text:",
+            "buttonLabel":"Buttons:"
+        },
+        "button":{
+            "buttonTextLabel":"Text:",
+            "buttonDestinationLabel":"Scene destination:"
+        },
+        "info":{
+            "scenesPlaceholder":"Scenes need a name",
+            "selectDestination":"Select the destination scenes",
+            "project":"Project",
+            "scene":"Scene"
+        },
+        "pronpt":{
+            "save":{
+                "enterName":"To save you need to enter a name",
+                "duplicateProject":"there is already a project with this name\nDo you want to replace?"
+            },
+            "load":{
+                "replaceScenes":"if you load this project current scenes will be removed\nDo you want to continue?"
+            },
+            "new":{
+                "reset":"Do you want to reset all scenes?"
+            },
+            "import":{
+                "insertLink":"Enter the link you want to import"
+            },
+            "export":{
+                "invalidName":"Error when exporting!!\nOne or more scenes has an invalid name",
+                "noDestinationButton":"Error when exporting!!\nAll buttons must have destination",
+                "noInitialScene":"Error when exporting!!\nIt is necessary to have an initial scene"
+            }
+            
+        }
+        
+    },
+    "pt-BR":{
+        "menu":{
+            "by":"Feito por: DX",
+            "buttonNew":"Novo",
+            "buttonSave":"Salvar",
+            "confirmSave":"Confimar",
+            "buttonLoad":"Carregar",
+            "confirmLoad":"Confimar",
+            "buttonImport":"Importar",
+            "buttonExport":"Exportar",
+            "addScene":"Adicionar Cena"
+        },
+        "scene":{
+            "InitialSceneLabel":"Cena Inicial",
+            "SceneLabel":"Cena:",
+            "colorLabel":"Cor:",
+            "titleLabel":"Titulo:",
+            "textLabel":"Texto:",
+            "buttonLabel":"Botões:"
+        },
+        "button":{
+            "buttonTextLabel":"Texto:",
+            "buttonDestinationLabel":"Cena destino:"
+        },
+        "info":{
+            "scenesPlaceholder":"Cenas precisam de nome",
+            "selectDestination":"Selecione a cenas destino",
+            "project":"Project",
+            "scene":"Scene"
+        },
+        "pronpt":{
+            "save":{
+                "enterName":"Para salvar você precisa incerir um nome",
+                "duplicateProject":"já existe uma projeto com este nome\nDeseja subistituir?"
+            },
+            "load":{
+                "replaceScenes":"se carregar este projeto as cenas atuais serão removidas\nQuer continuar?"
+            },
+            "new":{
+                "reset":"Você deseja redefinir todas as cenas?"
+            },
+            "import":{
+                "insertLink":"Insira o link que deseja importar"
+            },
+            "export":{
+                "invalidName":"Não é possivel Exportar!!\nUma ou mais cenas tem um nome invalido",
+                "noDestinationButton":"Não é possivel Exportar!!\nTodos os botões precisam ter destino",
+                "noInitialScene":"Não é possivel Exportar!!\nÉ nescessario q exista uma cena inical"
+            }
+            
+        }
+        
+    }
+}

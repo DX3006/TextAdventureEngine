@@ -10,17 +10,17 @@
 <body>
     <a id="by" href="https://www.twitch.tv/dx___" >Feito por: DX</a>
     <div id="barra">
-        <div class="menu" id="novo">Novo</div>
-        <div class="menu" id="botSalvar" value="Projeto 1">Salvar</div>
+        <div class="menu" id="buttonNew">Novo</div>
+        <div class="menu" id="buttonSave" value="Projeto 1">Salvar</div>
         <input class="impMenu fechar" id="salvar" ></select>
-        <div class="menu confirmar fechar" id="confimarSalvar">Confimar</div>
-        <div class="menu" id="botCarregar">Carregar</div>
+        <div class="menu confirmar fechar" id="confirmSave">Confimar</div>
+        <div class="menu" id="buttonLoad">Carregar</div>
         <select class="impMenu fechar" id="carregar" ></select>
-        <div class="menu confirmar fechar" id="confimarCarregar">Confimar</div>
-        <div id="addCena">Adicionar Cena</div>
+        <div class="menu confirmar fechar" id="confirmLoad">Confimar</div>
+        <div id="addScene">Adicionar Cena</div>
         <div id="barraDireita">
-            <div class="menu" id="importar">Importar</div>
-            <div class="menu" id="exportar">Exportar</div>
+            <div class="menu" id="buttonImport">Importar</div>
+            <div class="menu" id="buttonExport">Exportar</div>
         </div>
     </div>
     <div id="center">
@@ -30,26 +30,26 @@
                 <a class="remove" onclick="">x</a>
                 <div class="inical">
                     <input class="cb" type="checkbox">
-                    <a class="textName">Cena Inicial</a>
+                    <a class="textName" id="InitialSceneLabel">Cena Inicial</a>
                 </div>                
-                <a class="textName">Cena:</a>
+                <a class="textName" id="SceneLabel">Cena:</a>
                 <input class="textImp cena" placeholder="Cenas precisam de nome">
-                <a class="textName">Cor:</a>
+                <a class="textName" id="colorLabel">Cor:</a>
                 <input class="color"  type="color" value="#2e5e76"></textarea>
-                <a class="textName">Titulo:</a>
+                <a class="textName" id="titleLabel">Titulo:</a>
                 <input class="textImp title" >
-                <a class="textName">Texto:</a>
+                <a class="textName" id="textLabel">Texto:</a>
                 <textarea class="textImp text" rows="2" cols="10" style="min-height: 60px;"></textarea>
                 <div class="buttonDiv">
-                    <a class="textName">Botões</a>
+                    <a class="textName" id="buttonLabel">Botões</a>
                     <a class="addButton" onclick="">+</a>
                 </div>
             </div>
             <div class="buttonCont">
                 <a class="removeButton" onclick="">x</a>
-                <a class="textName">Texto:</a>
+                <a class="textName" id="buttonTextLabel">Texto:</a>
                 <input class="textImp buttomTexto"></input>
-                <a class="textName">Cena destino:</a>
+                <a class="textName" id="buttonDestinationLabel">Cena destino:</a>
                 <select  class="textImp cenaDestino">
                 </select >
             </div> 

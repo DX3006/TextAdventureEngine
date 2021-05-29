@@ -2,7 +2,7 @@
 
 engineLink="https://dx3006.github.io/TextAdventureEngine/"
 
-numeroCena=1
+language={}
 
 template=document.getElementById("template").getElementsByClassName("cenas")[0]
 templateButton=document.getElementById("template").getElementsByClassName("buttonCont")[0]
@@ -17,23 +17,28 @@ cbI=bloco.getElementsByClassName("cb")
 
 
 salvar=document.getElementById("salvar")
-confimarSalvar=document.getElementById("confimarSalvar")
+confimarSalvar=document.getElementById("confirmSave")
 
 carregar=document.getElementById("carregar")
-confimarCarregar=document.getElementById("confimarCarregar")
+confimarCarregar=document.getElementById("confirmLoad")
 
 
-document.getElementById("exportar").addEventListener('click', confirmExport ,false);
-document.getElementById("importar").addEventListener('click', confirmImport ,false);
+document.getElementById("buttonExport").addEventListener('click', confirmExport ,false);
+document.getElementById("buttonImport").addEventListener('click', confirmImport ,false);
 
-document.getElementById("addCena").addEventListener('click', addTemplate ,false);
-document.getElementById("novo").addEventListener ('click', confirmNovo ,false);
-document.getElementById("botCarregar").addEventListener ('click', abrirCarregar ,false);
-document.getElementById("botSalvar").addEventListener ('click', abrirSalvar ,false);
+document.getElementById("addScene").addEventListener('click', addTemplate ,false);
+document.getElementById("buttonNew").addEventListener ('click', confirmNovo ,false);
+document.getElementById("buttonLoad").addEventListener ('click', abrirCarregar ,false);
+document.getElementById("buttonSave").addEventListener ('click', abrirSalvar ,false);
 confimarSalvar.addEventListener ('click', confirmSalvar ,false); 
 confimarCarregar.addEventListener ('click', confirmCarregar ,false);   
 config=localStorage.getItem("config")
-carregarLocal()
+init()
+
+async function init(){
+    await changeLanguage(navigator.language) //navigator.language
+    carregarLocal()
+}
 
 function carregarLocal(){
     if(config){
@@ -44,14 +49,13 @@ function carregarLocal(){
         if(config.atual.cena.inicio != undefined){
             importCenas(config.atual.cena)
         }
-        carregarCenasSalvas()
-        
+        carregarCenasSalvas()        
     }else{
         console.log("criar config")
-        salvar.value="Projeto 1"
+        salvar.value=language.info.project+" 1"
         config={
             atual:{
-                nome:"Projeto 1",
+                nome:language.info.project+" 1",
                 cena:{}
             },
             salvas:{},
@@ -71,13 +75,13 @@ function salvarLocal(){
 function confirmSalvar(){
     
     if(salvar.value==""||salvar.value==null){
-        alert("Para salvar você precisa incerir um nome")
+        alert(language.pronpt.save.enterName)
     }else{
         
         continuar=true;
         key=Object.keys(config.salvas)
         if(config.atual.nome!=salvar.value && key.includes(salvar.value)){
-            continuar=confirm("já existe uma cena com este nome\n deseja subistituir?")
+            continuar=confirm(language.pronpt.save.duplicateProject)
         }
                     
         if(continuar){
@@ -115,7 +119,7 @@ function carregarCenasSalvas(){
 }
 
 function confirmCarregar(){
-    if(confirm("Ao carregar este Projeto todas as cenas atuais serão removidas\nQuer continuar?")){
+    if(confirm(language.pronpt.load.replaceScenes)){
 
         
         cenaCarregar=config.salvas[carregar.value]
@@ -136,17 +140,17 @@ function confirmCarregar(){
 }
 
 function confirmNovo(){
-    if(confirm("Você deseja redefinir todas as cenas?")){
+    if(confirm(language.pronpt.new.reset)){
 
         limparCenas()
 
         key=Object.keys(config.salvas)
         c=1
-        while( key.includes("Projeto "+(key.length+c)) ){
+        while( key.includes(language.info.project+" "+(key.length+c)) ){
             c++
         }
-        salvar.value="Projeto "+(key.length+c)
-        config.atual.nome="Projeto "+(key.length+c)
+        salvar.value=language.info.project+" "+(key.length+c)
+        config.atual.nome=language.info.project+" "+(key.length+c)
         addTemplate()
         
         localStorage.setItem("config",JSON.stringify(config))
@@ -155,7 +159,7 @@ function confirmNovo(){
 }
 
 function confirmImport(){
-    url=prompt("Insira o link que deseja importar");
+    url=prompt(language.pronpt.import.insertLink);
     hash = decodeURI(url)
     //console.log(hash)
     var match = hash.match(/#cenas=([^]+)/);
@@ -172,6 +176,8 @@ function confirmExport(){
     cenasExport=exportCenas(true)
     if(cenasExport){
         window.open(engineLink+"#cenas="+JSON.stringify(cenasExport));
+    }else{
+        markError()
     }
 }
 
@@ -221,11 +227,11 @@ function addTemplate(){
         nomeCenas.push(nomes[c].value)
     }
     c=1
-    while(nomeCenas.includes("Cena "+(cenas.length+c))){
+    while(nomeCenas.includes(language.info.scene+" "+(cenas.length+c))){
         c++
     }
 
-    elem.getElementsByClassName("cena")[0].value="Cena "+(cenas.length+c)
+    elem.getElementsByClassName("cena")[0].value=language.info.scene+" "+(cenas.length+c)
 
     if(cenas.length==0){
         elem.getElementsByClassName("cb")[0].checked=true
@@ -272,7 +278,7 @@ function importCenas(cenas){
             elem.getElementsByClassName("cb")[0].checked=true
         }
 
-        cenasListaOptions='<option value="0"></option>'
+        cenasListaOptions='<option value="0">'+language.info.selectDestination+'</option>'
         for(c2=0;key.length>c2;c2++){
             if(key[c2]!=key[c1]){
                 cenasListaOptions=cenasListaOptions+'<option value="'+key[c2]+'">'+key[c2]+'</option>'
@@ -315,6 +321,7 @@ function importCenas(cenas){
 
         bloco.appendChild(elem)
     }
+    markError()
 }
 
 function limparCenas(){
@@ -349,7 +356,7 @@ function exportCenas(erro){
         }
 
         if( (nome==""||nome==null) && erro ){
-            alert("Não é possivel Exportar!!\nUma ou mais cenas tem um nome invalido")
+            alert(language.pronpt.export.invalidName)
             return false;
         }
 
@@ -365,7 +372,7 @@ function exportCenas(erro){
 
         for(c2=0;buttomTexto.length>c2;c2++){
             if((cenaDestino[c2].value=="0")&&erro){
-                alert("Não é possivel Exportar!!\nTodos os botões precisam ter destino")
+                alert(language.pronpt.export.noDestinationButton)
                 return false
             }
             cenasExport.cenas[nome].opcoes.push([buttomTexto[c2].value,cenaDestino[c2].value])
@@ -373,7 +380,7 @@ function exportCenas(erro){
 
     }
     if(cenasExport.inicio==""  && erro  ){
-        alert("Não é possivel Exportar!!\né nescessario q exista uma cena inical")
+        alert(language.pronpt.export.noInitialScene)
         return false
     }
     return cenasExport
@@ -431,7 +438,7 @@ function updateLista(){
         sel=cenaDestino[c].selectedIndex
         nome=cenaDestino[c].parentElement.parentElement.getElementsByClassName("cena")[0].value
         
-        cenasListaOptions='<option value="0">Selecione a cenas destino</option>'
+        cenasListaOptions='<option value="0">'+language.info.selectDestination+'</option>'
         for(c2=0;cenasLista.length>c2;c2++){
             if(cenasLista[c2]!=nome){
                 cenasListaOptions=cenasListaOptions+'<option value="'+cenasLista[c2]+'">'+cenasLista[c2]+'</option>'
@@ -463,6 +470,15 @@ function updateLista(){
 
 }
 
+function markError(){
+    console.log(nomes.length)
+    for(cc=0;nomes.length>cc;cc++){
+        isBlack(nomes[cc])
+    }
+    for(cc=0;cenaDestino.length>cc;cc++){
+        isBlackDestino(cenaDestino[cc])
+    }
+}
 
 async function remove(e){
    
@@ -477,6 +493,7 @@ async function remove(e){
     salvarLocal()
     updateLista()
 }
+
 async function removeButton(e){
     e.target.parentElement.classList.add("killButton")
     await sleepTime(210)
@@ -500,38 +517,53 @@ function cenaInical(e){
 }
 
 function isBlackDestino(e){
-    if(e.target.selectedIndex==0){
-        e.target.style.borderColor="#ff2525"
+    if(e.target){
+        e=e.target
+    }
+    
+    if(e.selectedIndex==0){
+        e.style.borderColor="#ff2525"
     }else{
-        e.target.style.borderColor=""
+        e.style.borderColor=""
     }
 }
 
 function isBlack(e){
-    updateLista()
-    if(e.target.value==""|e.target.value==null){
-        e.target.style.borderColor="#ff2525"
+    if(e.target){
+        e=e.target
+    }
+    if(e.value==""||e.value==null){
+        e.style.borderColor="#ff2525"
     }else{
-        e.target.style.borderColor=""
+        e.style.borderColor=""
     }
 }
 
 function isRepite(e){
-    updateLista()
-    igual=false
+    if(e.target){
+        e=e.target
+    }
+    cenasNome=[]
     for(c=0;nomes.length>c;c++){
-        if( nomes[c]!=e.target && nomes[c].value==e.target.value ){
-            igual=true
-            break
+        if( nomes[c]!=e){
+            cenasNome.push(nomes[c].value)
+        }        
+    }
+    if(cenasNome.includes(e.value)){
+        e.style.borderColor=""
+        nomeTemp=e.value
+        c2=2
+        while(cenasNome.includes(nomeTemp)){
+            nomeTemp=e.value+" ("+c2+")"
+            console.log(nomeTemp)
         }
-        
+        e.value=nomeTemp
     }
-    if(igual){
-        e.target.style.borderColor="#ff2525"
-    }else{
-        e.target.style.borderColor=""
-    }
+    
+    
+    updateLista()
     salvarLocal()
+
 }
 
 
@@ -545,4 +577,23 @@ function sleepTime(timeS) {
             resolve()
         }, timeS)
     })
+}
+
+async function changeLanguage(lang){
+    allLanguage = await fetch('language.json').then(function (response) {
+        return response.json();
+    })  
+    if(allLanguage[lang]==undefined){
+        lang="en-US"
+    }
+    language=allLanguage[lang]
+    changeLang=["menu","scene","button"]
+    for(c1=0;changeLang.length>c1;c1++){
+        console.log(language[changeLang[c1]])
+        key=Object.keys(language[changeLang[c1]])
+        for(c2=0;key.length>c2;c2++){
+            document.getElementById(key[c2]).innerHTML=language[changeLang[c1]][key[c2]]
+        }
+    }
+    document.getElementsByClassName("cena")[0].placeholder=language.info.scenesPlaceholder
 }

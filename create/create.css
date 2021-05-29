@@ -37,6 +37,10 @@ body{
     user-select: none;
     cursor: pointer;
 }
+#by:hover{
+    transform: scale(1.05);
+    background-color: #c3c8d4;
+}
 .menu{
     display: inline-block;
     font-family: Lato;
@@ -76,7 +80,7 @@ body{
     background-color: #3e3a3f;
 
 }
-#addCena{
+#addScene{
     display: inline-block;
     position: absolute;
     left: 50%;
@@ -97,7 +101,7 @@ body{
     cursor: pointer;
 }
 
-#addCena:hover{
+#addScene:hover{
     transform: translateX(-50%) scale(1.05);
     background-color: #c3c8d4;
 }
