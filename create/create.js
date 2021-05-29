@@ -470,7 +470,7 @@ async function remove(e){
     e.target.parentElement.classList.add("kill")
     await sleepTime(260)
     e.target.parentElement.remove()
-    if(t){
+    if(t&&cenas.length>0){
         cenas[0].style.borderColor= "white"
         cenas[0].getElementsByClassName("cb")[0].checked=true
     }
