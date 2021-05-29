@@ -49,17 +49,14 @@ function carregarLocal(){
     }else{
         console.log("criar config")
         salvar.value="Projeto 1"
-        addTemplate()
         config={
             atual:{
                 nome:"Projeto 1",
-                cena:exportCenas()
+                cena:{}
             },
             salvas:{},
         }
-        
-        JSON.stringify(config)
-        localStorage.setItem("config",JSON.stringify(config))
+        addTemplate()
     }
     
 }
