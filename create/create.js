@@ -61,12 +61,11 @@ function carregarLocal(){
     
 }
 function salvarLocal(){
-    console.log("salvou1")
+    console.log("salvou")
     cena=exportCenas()
     config.atual.cena=cena
     JSON.stringify(config)
     localStorage.setItem("config",JSON.stringify(config))
-    console.log("salvou2")
 }
 
 function confirmSalvar(){
@@ -392,6 +391,7 @@ function addButton(e){
     elem.getElementsByClassName("removeButton")[0].addEventListener ('click', removeButton ,false);
     e.target.parentElement.parentElement.appendChild(elem)
     updateLista()
+    salvarLocal()
 }
 /* 
 function updateLista(num){
@@ -431,7 +431,7 @@ function updateLista(){
         sel=cenaDestino[c].selectedIndex
         nome=cenaDestino[c].parentElement.parentElement.getElementsByClassName("cena")[0].value
         
-        cenasListaOptions='<option value="0"></option>'
+        cenasListaOptions='<option value="0">Selecione a cenas destino</option>'
         for(c2=0;cenasLista.length>c2;c2++){
             if(cenasLista[c2]!=nome){
                 cenasListaOptions=cenasListaOptions+'<option value="'+cenasLista[c2]+'">'+cenasLista[c2]+'</option>'
