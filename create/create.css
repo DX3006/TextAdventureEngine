@@ -19,6 +19,7 @@ body{
     right: 0;
 }
 #by{
+    text-decoration: none;
     position: fixed;
     top: 55px;
     left: 11px;
