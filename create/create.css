@@ -1,0 +1,408 @@
+body{
+    background-color: #1d191e;
+    margin: 0px;
+}
+#barra{
+    display: inline-flex;
+    position: fixed;
+    height: 45px;
+    width: 100%;
+    background: #2f2e33;
+    box-shadow: 0px 0px 10px #00000075;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    z-index: 2;
+    /*border-bottom: 5px solid #1d191e;  */
+}
+#barraDireita{
+    position: absolute;
+    right: 0;
+}
+#by{
+    position: fixed;
+    top: 55px;
+    left: 11px;
+    font-family: Lato;
+    font-size: 20px;
+    font-weight: 600;
+    color: rgb(23, 23, 24);
+    background-color: #ffffff;
+    padding: 8px 21px 8px 21px;
+    margin-right: -4px;
+    border-radius: 40px;
+    box-shadow: 0px 0px 10px #00000075;
+    z-index: 1;
+    transition: transform ease-in-out .1s,background-color ease-in-out .1s;
+    user-select: none;
+    cursor: pointer;
+}
+.menu{
+    display: inline-block;
+    font-family: Lato;
+    font-size: 20px;
+    font-weight: 400;
+    color: white;
+    background-color: #1d191e;
+    padding: 6px 15px 6px 15px;
+    margin: 5px;
+    border-radius: 6px;
+    transition: transform ease-in-out .1s,background-color ease-in-out .06s;
+    user-select: none;
+    cursor: pointer;
+    overflow: hidden;
+    z-index: 1;
+}
+.menuOld{
+    display: inline-block;
+    font-family: Lato;
+    font-size: 20px;
+    font-weight: 400;
+    color: white;
+    background-color: #1d191e;
+    padding: 12px;
+    border-right: 3px solid;
+    margin-right: -4px;
+    transition: transform ease-in-out .1s,background-color ease-in-out .1s;
+    user-select: none;
+    cursor: pointer;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.menu:hover{
+    /*transform: scale(1.05);*/
+    z-index: 2;
+    background-color: #3e3a3f;
+
+}
+#addCena{
+    display: inline-block;
+    position: absolute;
+    left: 50%;
+    top: 13px;
+    transform: translateX(-50%);
+    font-family: Lato;
+    font-size: 20px;
+    font-weight: 600;
+    color: rgb(23, 23, 24);
+    background-color: #ffffff;
+    padding: 8px 30px 8px 30px;
+    margin-right: -4px;
+    border-radius: 40px;
+    box-shadow: 0px 0px 10px #00000075;
+    z-index: 1;
+    transition: transform ease-in-out .1s,background-color ease-in-out .1s;
+    user-select: none;
+    cursor: pointer;
+}
+
+#addCena:hover{
+    transform: translateX(-50%) scale(1.05);
+    background-color: #c3c8d4;
+}
+.impMenu{
+    font-family: Lato;
+    font-size: 20px;
+    font-weight: 400;
+    z-index: 0;
+    height: 35px;
+    margin: 0px;
+    padding-left: 10px;
+    border-width: 0px;
+    margin-top: 5px;
+    outline: none;
+    position: relative;
+    left: -2px;
+    border-radius: 15px 0px 0px 15px;
+    transition: width ease-in-out .1s;
+    width: 150px;
+    overflow: hidden;
+}
+.impMenuold{ 
+    font-family: Lato;
+    font-size: 20px;
+    font-weight: 400;
+    z-index: 0;
+    height: 45px;
+    margin: 0px;
+    border-width: 0px;
+    margin-top: -2px;
+    outline: none;
+    position: relative;
+    top: -17px;
+    margin-right: -4px;
+    transition: width ease-in-out .1s;
+    width: 150px;
+    overflow: hidden;
+}
+.confirmar{
+    background: #32864f;
+    margin-left: -2px;
+    margin-right: 2px;
+    border-radius: 0px 14px 14px 0px;
+}
+.confirmar:hover{
+    transform: scale(1.0);
+    z-index: 2;
+    background-color: #41cc72;
+}
+.fechar{
+    width: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    border-width: 0px;
+    z-index: -1;
+}
+#center{   
+    display: flex;
+    height: auto;
+    width: 100%;
+    position: relative;
+    top: 66px;
+}
+#bloco{
+    display: flex;
+    width: inherit;
+    opacity: 1;
+    transition: opacity ease-in-out .7s;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.cenas{
+    position: relative;
+    display: flex;
+    background-color: #2e5e76;
+    padding: 30px 50px 50px 50px;
+    width: 400px;
+    flex-direction: column;
+    border-radius: 20px;
+    border-width: 5px;
+    border-color: transparent;
+    border-style: solid;
+    transition: border-color ease-in-out .2s;
+    margin: 20px;
+    animation: ease-in-out spawn .25s forwards;
+
+}
+.addButton{
+    font-family: Lato;
+    font-size: 25px;
+    font-weight: 700;
+    color:  rgb(23, 23, 24);
+    background-color: #fff;
+    border-radius: 40px;
+    padding: 0px 9px 1px 8px;
+    user-select: none;
+    cursor: pointer;
+}
+.removeButton{
+    position: absolute;
+    top: 4%;
+    right: 3%;
+    font-family: Lato;
+    font-size: 15px;
+    font-weight: 700;
+    color: rgb(23, 23, 24);
+    background-color: #ff6565;
+    border-radius: 40px;
+    padding: 0px 6px 3px 6px;
+    user-select: none;
+    cursor: pointer;
+}
+.remove{
+    position: absolute;
+    top: 1%;
+    right: 1%;
+    font-family: Lato;
+    font-size: 15px;
+    font-weight: 700;
+    color: rgb(23, 23, 24);
+    background-color: #ff6565;
+    border-radius: 40px;
+    padding: 0px 7px 3px 6px;
+    user-select: none;
+    cursor: pointer;
+}
+
+.buttonCont{
+    position: relative;
+    background-color: #00000042;
+    padding: 20px 30px 30px 30px;
+    border-radius: 20px;
+    margin-top: 20px;
+    animation: ease-in-out spawnButton .15s forwards;
+}
+
+.buttonDiv{
+    margin-top: 20px;
+}
+.textImp{
+    width: 100%;
+    resize: vertical;
+    font-family: Lato;
+    font-size: 20px;
+    padding: 2px;
+    background-color: #fff;
+    border-radius: 6px;
+    border-color: white;
+    border-width: 4px;
+    border-style: solid;
+    color: rgb(23, 23, 24);
+    transition: border-color ease-in-out .2s;
+    outline: none;
+}
+.textImp:focus{
+    border-color: rgba(255, 255, 255, 0.493);
+}
+
+.color{
+    width: 30px;
+    height: 30px;
+
+}
+.cb{
+    width: 20px;
+    height: 20px;
+}
+.inical{
+    position: absolute;
+    top: 0px;
+    left: 7px;
+}
+.textName{
+    font-family: Lato;
+    font-size: 30px;
+    font-weight: 500;
+    color: white;
+    margin-top: 15px;
+}
+#buttons{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    min-width: 800px;
+    margin: 26px;
+    justify-content: space-around;
+
+}
+.button{
+    font-family: Lato;
+    font-size: 40px;
+    font-weight: 500;
+    color: white;
+    background-color: #00000000;
+    padding: 0px 20px 6px 19px;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: white;
+    border-width: 3px;
+    transition: background-color ease-in-out .2s;
+    transition: transform ease-in-out .2s;
+    max-width: 400px;
+    user-select: none;
+    cursor: pointer;
+    margin: 10px;
+}
+.button:hover{
+    background-color:#0000005d;
+    transform: scale(1.05);
+}
+#template{
+    position: absolute;
+    display: none;
+}
+::-webkit-scrollbar{
+    width: 8px;
+}
+::-webkit-scrollbar-track{
+    border-radius: 10px;
+    background-color:#0b080c;
+}
+::-webkit-scrollbar-thumb{
+    border-radius: 10px;
+    background-color: #373438;
+}
+textarea::-webkit-scrollbar-track{
+    border-radius: 10px;
+    background-color:#e9e5f1;
+}
+textarea::-webkit-scrollbar-thumb{
+    border-radius: 10px;
+    background-color: #b8b7c9;
+}
+::-webkit-resizer {
+    border-top:12px solid transparent;
+    border-left:12px solid transparent;
+    border-right:12px solid #b8b7c9;
+    border-bottom:12px solid #b8b7c9;
+    border-radius: 3px;
+}
+
+@keyframes spawn {
+    0% {
+        transform:translate(0px,-100px);
+        opacity: 0;
+    }
+    100%{
+        transform:translate(0px,0px);
+        opacity: 1;
+    }
+}
+
+@keyframes spawnButton {
+    
+    0% {
+        transform:translate(0px,-50px);
+        opacity: 0;
+        padding: 0px;
+        margin-top: 0px;
+        height: 0px;
+    }
+    100%{
+        transform:translate(0px,0px);
+        opacity: 1;
+        margin-top: 20px;        
+        height: 146px;
+        padding: 20px 30px 30px 30px;
+    }
+}
+.kill{
+    animation: ease-in-out kill .25s forwards;
+}
+.killButton{
+    animation: ease-in-out killButton .15s forwards;
+}
+
+@keyframes kill {
+    0%{
+        transform:translate(0px,0px);
+        opacity: 1;
+        width: 400px;
+        padding: 30px 50px 50px 50px;
+    }
+    100% {
+        transform:translate(0px,-100px);
+        opacity: 0;
+        width: 0%;
+        padding: 0px;
+    }
+}
+
+@keyframes killButton {
+    0%{
+        transform:translate(0px,0px);
+        opacity: 1;
+        margin-top: 20px;        
+        height: 146px;
+        padding: 20px 30px 30px 30px;
+    }
+    100% {
+        transform:translate(-50px,0px);
+        opacity: 0;
+        padding: 0px;
+        margin-top: 0px;
+        height: 0px;
+    }
+}

@@ -1,0 +1,68 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="create.css">
+    <title>Text Adventure Editor</title>
+    <meta charset="utf-8" />
+	<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div id="by" href="https://www.twitch.tv/dx___" >Feito por: DX</div>
+    <div id="barra">
+        <div class="menu" id="novo">Novo</div>
+        <div class="menu" id="botSalvar" value="Projeto 1">Salvar</div>
+        <input class="impMenu fechar" id="salvar" ></select>
+        <div class="menu confirmar fechar" id="confimarSalvar">Confimar</div>
+        <div class="menu" id="botCarregar">Carregar</div>
+        <select class="impMenu fechar" id="carregar" ></select>
+        <div class="menu confirmar fechar" id="confimarCarregar">Confimar</div>
+        <div id="addCena">Adicionar Cena</div>
+        <div id="barraDireita">
+            <div class="menu" id="importar">Importar</div>
+            <div class="menu" id="exportar">Exportar</div>
+        </div>
+    </div>
+    <div id="center">
+        <div id="bloco"></div>
+        <div  id="template">            
+            <div class="cenas">
+                <a class="remove" onclick="">x</a>
+                <div class="inical">
+                    <input class="cb" type="checkbox"></checkbox>
+                    <a class="textName">Cena Inical</a>
+                </div>                
+                <a class="textName">Cena:</a>
+                <input class="textImp cena" placeholder="Cenas precisam de nome"></input>
+                <a class="textName">Cor:</a>
+                <input class="color"  type="color" value="#2e5e76"></textarea>
+                <a class="textName">Titulo:</a>
+                <input class="textImp title" ></input>
+                <a class="textName">Texto:</a>
+                <textarea class="textImp text" rows="2" cols="10" style="min-height: 60px;"></textarea>
+                <div class="buttonDiv">
+                    <a class="textName">Botões</a>
+                    <a class="addButton" onclick="">+</a>
+                </div>
+            </div>
+            <div class="buttonCont">
+                <a class="removeButton" onclick="">x</a>
+                <a class="textName">Texto:</a>
+                <input class="textImp buttomTexto"></input>
+                <a class="textName">Cena destino:</a>
+                <select  class="textImp cenaDestino"  placeholder="Insira a cenas destino">
+                    <option value="valor1" selected></option>
+                    <option value="valor2" >Valor 2</option>
+                    <option value="valor3">Valor 3</option>
+                </select >
+            </div> 
+        </div>
+    </div>
+    
+    <script src="cenas.js"></script>
+    <script src="create.js"></script>
+    
+    
+</body>
+
+</html>
