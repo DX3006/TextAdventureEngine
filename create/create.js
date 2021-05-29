@@ -165,6 +165,7 @@ function confirmImport(){
         cenasImport=JSON.parse(match[1])
         limparCenas()
         importCenas(cenasImport)
+        salvarLocal()
     }
 }
 
