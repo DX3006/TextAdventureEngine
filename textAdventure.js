@@ -76,7 +76,7 @@ if (match) {
     cenas=JSON.parse(match[1])
     changeScene(cenas.inicio)    
 }else{
-    window.open(editorLink);
+    window.location.href = editorLink;
 }
 
 /* 
