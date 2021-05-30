@@ -79,8 +79,8 @@
         "info":{
             "scenesPlaceholder":"Cenas precisam de nome",
             "selectDestination":"Selecione a cenas destino",
-            "project":"Project",
-            "scene":"Scene"
+            "project":"Projeto",
+            "scene":"Cena"
         },
         "pronpt":{
             "save":{
