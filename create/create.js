@@ -1,5 +1,6 @@
 //cenas={}
 
+// engineLink="http://127.0.0.1:5500/index.html"
 engineLink="https://dx3006.github.io/TextAdventureEngine/"
 
 language={}
@@ -164,8 +165,13 @@ function confirmImport(){
     //console.log(hash)
     var match = hash.match(/#cenas=([^]+)/);
     if (match) {
-        console.log(match[1])
-        cenasImport=JSON.parse(match[1])
+        if(match[1].indexOf("{")==-1){
+            convert=LZString.decompressFromEncodedURIComponent(match[1])
+        }else{
+            convert=match[1]
+        }
+        //console.log(match[1])
+        cenasImport=JSON.parse(convert)
         limparCenas()
         importCenas(cenasImport)
         salvarLocal()
@@ -175,7 +181,11 @@ function confirmImport(){
 function confirmExport(){
     cenasExport=exportCenas(true)
     if(cenasExport){
-        window.open(engineLink+"#cenas="+JSON.stringify(cenasExport));
+        stt=JSON.stringify(cenasExport)
+        comp= LZString.compressToEncodedURIComponent(stt)
+        console.log("a compreção diminuiu de "+stt.length+" para "+comp.length+" redução para "+Math.round(comp.length/stt.length*10000)/100+ "%")
+        // console.log(engineLink+"#cenas="+comp)
+        window.open(engineLink+"#cenas="+comp);//JSON.stringify(cenasExport)
     }else{
         markError()
     }
@@ -276,6 +286,8 @@ function importCenas(cenas){
         if(key[c1]==cenas.inicio){
             elem.style.borderColor= "white"
             elem.getElementsByClassName("cb")[0].checked=true
+        }else{
+            elem.getElementsByClassName("cb")[0].checked=false
         }
 
         cenasListaOptions='<option value="0">'+language.info.selectDestination+'</option>'
@@ -332,6 +344,7 @@ function limparCenas(){
 
 function exportCenas(erro){
     cenasExport= {
+        version:1,
         inicio:"",
         cenas: {}
     }
@@ -471,7 +484,7 @@ function updateLista(){
 }
 
 function markError(){
-    console.log(nomes.length)
+    //console.log(nomes.length)
     for(cc=0;nomes.length>cc;cc++){
         isBlack(nomes[cc])
     }
@@ -589,7 +602,7 @@ async function changeLanguage(lang){
     language=allLanguage[lang]
     changeLang=["menu","scene","button"]
     for(c1=0;changeLang.length>c1;c1++){
-        console.log(language[changeLang[c1]])
+        //console.log(language[changeLang[c1]])
         key=Object.keys(language[changeLang[c1]])
         for(c2=0;key.length>c2;c2++){
             document.getElementById(key[c2]).innerHTML=language[changeLang[c1]][key[c2]]
