@@ -18,6 +18,11 @@ function sleepTime(timeS) {
         }, timeS)
     })
 }
+function removeHTMLentities(text){
+    return text.replace(/[\u00A0-\u9999"'<>\&]/g, function(i) {
+        return '&#'+i.charCodeAt(0)+';';
+     });
+}
 
 async function setURL(cenaNome) {
     hash = decodeURI(document.location.hash)
@@ -53,12 +58,12 @@ async function changeScene(cenaNome, ani) {
     } else {
         text.style["font-size"] = ""
     }
-    title.innerHTML = cena.titulo
-    text.innerHTML = cena.texto
+    title.innerHTML = removeHTMLentities(cena.titulo);
+    text.innerHTML = removeHTMLentities(cena.texto);
 
     button = ""
     for (c = 0; cena.opcoes.length > c; c++) {
-        button = button + "<button onclick='changeScene(\"" + cena.opcoes[c][1] + "\",true)' class=button >" + cena.opcoes[c][0] + "</button>"
+        button = button + "<button onclick='changeScene(\"" + removeHTMLentities(cena.opcoes[c][1].replace(/"/g,"\\\"").replace(/'/g,"\\\'")) + "\",true)' class=button >" + removeHTMLentities(cena.opcoes[c][0]) + "</button>"
     }
     buttons.innerHTML = button
     bloco.style.opacity = 1

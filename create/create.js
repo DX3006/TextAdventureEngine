@@ -293,7 +293,7 @@ function importCenas(cenas){
         cenasListaOptions='<option value="0">'+language.info.selectDestination+'</option>'
         for(c2=0;key.length>c2;c2++){
             if(key[c2]!=key[c1]){
-                cenasListaOptions=cenasListaOptions+'<option value="'+key[c2]+'">'+key[c2]+'</option>'
+                cenasListaOptions=cenasListaOptions+'<option value="'+removeHTMLentities(key[c2])+'">'+removeHTMLentities(key[c2])+'</option>'
             }
         }
         for(c2=0;cenas.cenas[key[c1]].opcoes.length>c2;c2++){
@@ -311,7 +311,7 @@ function importCenas(cenas){
             elemDestino=elemButton.getElementsByClassName("cenaDestino")[0]
 
             sel=cenas.cenas[key[c1]].opcoes[c2][1]
-            
+
             elemDestino.innerHTML=cenasListaOptions
             //console.log(elemDestino)
             
@@ -334,6 +334,12 @@ function importCenas(cenas){
         bloco.appendChild(elem)
     }
     markError()
+}
+
+function removeHTMLentities(text){
+    return text.replace(/[\u00A0-\u9999"'<>\&]/g, function(i) {
+        return '&#'+i.charCodeAt(0)+';';
+     });
 }
 
 function limparCenas(){
@@ -454,7 +460,7 @@ function updateLista(){
         cenasListaOptions='<option value="0">'+language.info.selectDestination+'</option>'
         for(c2=0;cenasLista.length>c2;c2++){
             if(cenasLista[c2]!=nome){
-                cenasListaOptions=cenasListaOptions+'<option value="'+cenasLista[c2]+'">'+cenasLista[c2]+'</option>'
+                cenasListaOptions=cenasListaOptions+'<option value="'+removeHTMLentities(cenasLista[c2])+'">'+removeHTMLentities(cenasLista[c2])+'</option>'
             }
         }
         sel=cenaDestino[c].value
