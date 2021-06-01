@@ -83,7 +83,7 @@ function carregarLocal(){
         }
         addScene()
     }
-    if(importFromUrl()){//document.location.hash,language.pronpt.import.fromUrl
+    if(importFromUrl(document.location.hash)){//document.location.hash,language.pronpt.import.fromUrl
         window.history.pushState(language.info.importedProject, language.info.importedProject ,window.location.protocol+"//"+window.location.host+window.location.pathname)
     }
     
