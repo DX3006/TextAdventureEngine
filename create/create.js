@@ -27,7 +27,7 @@ confimarCarregar=document.getElementById("confirmLoad")
 document.getElementById("buttonExport").addEventListener('click', confirmExport ,false);
 document.getElementById("buttonImport").addEventListener('click', confirmImport ,false);
 
-document.getElementById("addScene").addEventListener('click', addTemplate ,false);
+document.getElementById("addScene").addEventListener('click', confirmAddScene ,false);
 document.getElementById("buttonNew").addEventListener ('click', confirmNovo ,false);
 document.getElementById("buttonLoad").addEventListener ('click', abrirCarregar ,false);
 document.getElementById("buttonSave").addEventListener ('click', abrirSalvar ,false);
@@ -61,7 +61,7 @@ function carregarLocal(){
             },
             salvas:{},
         }
-        addTemplate()
+        addScene()
     }
     
 }
@@ -152,7 +152,7 @@ function confirmNovo(){
         }
         salvar.value=language.info.project+" "+(key.length+c)
         config.atual.nome=language.info.project+" "+(key.length+c)
-        addTemplate()
+        addScene()
         
         localStorage.setItem("config",JSON.stringify(config))
         
@@ -190,6 +190,11 @@ function confirmExport(){
         markError()
     }
 }
+function confirmAddScene(){
+    elem=addScene()
+    elem.scrollIntoView()
+    //elem.classList.add("blink")
+}
 
 carregarT=false
 function abrirCarregar(){
@@ -216,21 +221,37 @@ function abrirSalvar(){
     }
 }
 
-function addTemplate(){
+function addSceneEvents(elemCreate){
+
+    elemCreate.getElementsByClassName("cb")[0].addEventListener("change", salvarLocal, false);
+    elemCreate.getElementsByClassName("cena")[0].addEventListener("change", isRepite, false);
+    elemCreate.getElementsByClassName("color")[0].addEventListener("change", salvarLocal, false);
+    elemCreate.getElementsByClassName("title")[0].addEventListener("change", salvarLocal, false);
+    elemCreate.getElementsByClassName("text")[0].addEventListener("change", salvarLocal, false);  
+
+
+    elemCreate.getElementsByClassName("color")[0].addEventListener("input", changeBG, false);
+    elemCreate.getElementsByClassName("cena")[0].addEventListener("input", isBlack, false);
+    elemCreate.getElementsByClassName("cb")[0].addEventListener ('input', cenaInical ,false);
+    elemCreate.getElementsByClassName("remove")[0].addEventListener ('click', remove ,false);
+    elemCreate.getElementsByClassName("addButton")[0].addEventListener ('click', addButton ,false);
+    
+    return elemCreate;
+}
+function addButtonEvents(elemCreate){
+    elemCreate.getElementsByClassName("buttomTexto")[0].addEventListener("change", salvarLocal, false);
+    elemCreate.getElementsByClassName("cenaDestino")[0].addEventListener("change", salvarLocal, false);
+
+
+    elemCreate.getElementsByClassName("cenaDestino")[0].addEventListener("input", isBlackDestino, false);
+    elemCreate.getElementsByClassName("removeButton")[0].addEventListener ('click', removeButton ,false);
+
+}  
+
+function addScene(){
     elem=template.cloneNode(true)
 
-    elem.getElementsByClassName("cb")[0].addEventListener("change", salvarLocal, false);
-    elem.getElementsByClassName("cena")[0].addEventListener("change", isRepite, false);
-    elem.getElementsByClassName("color")[0].addEventListener("change", salvarLocal, false);
-    elem.getElementsByClassName("title")[0].addEventListener("change", salvarLocal, false);
-    elem.getElementsByClassName("text")[0].addEventListener("change", salvarLocal, false);  
-
-
-    elem.getElementsByClassName("color")[0].addEventListener("input", changeBG, false);
-    elem.getElementsByClassName("cena")[0].addEventListener("input", isBlack, false);
-    elem.getElementsByClassName("cb")[0].addEventListener ('input', cenaInical ,false);
-    elem.getElementsByClassName("remove")[0].addEventListener ('click', remove ,false);
-    elem.getElementsByClassName("addButton")[0].addEventListener ('click', addButton ,false);
+    addSceneEvents(elem)
     
     nomeCenas=[]
     for(c=0;nomes.length>c;c++){
@@ -250,6 +271,8 @@ function addTemplate(){
     bloco.appendChild(elem)
     updateLista()
     salvarLocal()
+    return elem
+    
 }
 /* 
 jogo="{\"inicio\":\"Inicio\",\"cenas\":{\"Inicio\":{\"titulo\":\"Jogo Teste\",\"texto\":\"feito em live com sono e amor\",\"color\":\"#27401c\",\"opcoes\":[[\"Jogar\",\"dialogo01\"]]},\"dialogo01\":{\"titulo\":\"\",\"texto\":\"DX começou a live morrendo de sono.\",\"color\":\"#762e2e\",\"opcoes\":[[\"Fechar a live\",\"Dormir\"],[\"Tentar fazer a live\",\"Fazer live\"]]},\"Dormir\":{\"titulo\":\"\",\"texto\":\"Vc avisa o chat q esta morrendo de sono e vai mimi\",\"color\":\"#80a2b3\",\"opcoes\":[[\"Continuar\",\"Dormir 2\"]]},\"Fazer live\":{\"titulo\":\"\",\"texto\":\"Vc tenta achar um assunto, mas tudo que consegue é enrolar\",\"color\":\"#2e5e76\",\"opcoes\":[[\"Tentar jogar \",\"jogar\"],[\"Assistir algo\",\"assistir\"]]},\"Dormir 2\":{\"titulo\":\"\",\"texto\":\"Mas vc fica com consciência pesada de ter abandonado a live \",\"color\":\"#76732e\",\"opcoes\":[[\"Abrir a live denovo\",\"dialogo01\"],[\"Dormir de quaquer jeito\",\"Dormir 3\"]]},\"Dormir 3\":{\"titulo\":\"\",\"texto\":\"Vc vai para cama e dormi lindamente\",\"color\":\"#92acb9\",\"opcoes\":[[\"Jogar denovo\",\"Inicio\"]]},\"jogar\":{\"titulo\":\"\",\"texto\":\"vc esta cansado demais para jogar\",\"color\":\"#2e7630\",\"opcoes\":[[\"Fazer outra coisa\",\"Fazer live\"],[\"Deistir e ir domir\",\"Dormir\"]]},\"assistir\":{\"titulo\":\"\",\"texto\":\"vc tenta assistir algo mas caindo de sono\",\"color\":\"#522e76\",\"opcoes\":[[\"Deistir e ir domir\",\"Dormir\"]]}}}"
@@ -264,20 +287,7 @@ function importCenas(cenas){
 
     for(c1=0;key.length>c1;c1++){
         elem=template.cloneNode(true)
-
-        elem.getElementsByClassName("cb")[0].addEventListener("change", salvarLocal, false);
-        elem.getElementsByClassName("cena")[0].addEventListener("change", isRepite, false);
-        elem.getElementsByClassName("color")[0].addEventListener("change", salvarLocal, false);
-        elem.getElementsByClassName("title")[0].addEventListener("change", salvarLocal, false);
-        elem.getElementsByClassName("text")[0].addEventListener("change", salvarLocal, false);   
-
-
-
-        elem.getElementsByClassName("color")[0].addEventListener("input", changeBG, false);
-        elem.getElementsByClassName("cena")[0].addEventListener("input", isBlack, false);
-        elem.getElementsByClassName("cb")[0].addEventListener ('input', cenaInical ,false);
-        elem.getElementsByClassName("remove")[0].addEventListener ('click', remove ,false);
-        elem.getElementsByClassName("addButton")[0].addEventListener ('click', addButton ,false);
+        addSceneEvents(elem)
         elem.getElementsByClassName("cena")[0].value=key[c1]
         elem.getElementsByClassName("color")[0].value=cenas.cenas[key[c1]].color
         elem.getElementsByClassName("title")[0].value=cenas.cenas[key[c1]].titulo
@@ -299,14 +309,7 @@ function importCenas(cenas){
         for(c2=0;cenas.cenas[key[c1]].opcoes.length>c2;c2++){
             
             elemButton=templateButton.cloneNode(true)
-
-            elemButton.getElementsByClassName("buttomTexto")[0].addEventListener("change", salvarLocal, false);
-            elemButton.getElementsByClassName("cenaDestino")[0].addEventListener("change", salvarLocal, false);
-
-            elemButton.getElementsByClassName("cenaDestino")[0].addEventListener("input", isBlackDestino, false);
-            elemButton.getElementsByClassName("removeButton")[0].addEventListener ('click', removeButton ,false);
-
-
+            addButtonEvents(elemButton)
             elemButton.getElementsByClassName("buttomTexto")[0].value=cenas.cenas[key[c1]].opcoes[c2][0]
             elemDestino=elemButton.getElementsByClassName("cenaDestino")[0]
 
@@ -408,42 +411,11 @@ function exportCenas(erro){
 
 function addButton(e){
     elem=templateButton.cloneNode(true)
-
-    elem.getElementsByClassName("buttomTexto")[0].addEventListener("change", salvarLocal, false);
-    elem.getElementsByClassName("cenaDestino")[0].addEventListener("change", salvarLocal, false);
-
-
-    elem.getElementsByClassName("cenaDestino")[0].addEventListener("input", isBlackDestino, false);
-    elem.getElementsByClassName("removeButton")[0].addEventListener ('click', removeButton ,false);
+    addButtonEvents(elem)
     e.target.parentElement.parentElement.appendChild(elem)
     updateLista()
     salvarLocal()
 }
-/* 
-function updateLista(num){
-    cenasLista='<option value="0"></option>'
-    for(c=0;cenas.length>c;c++){
-        nome=cenas[c].getElementsByClassName("cena")[0].value
-        cenasLista=cenasLista+'<option value="'+nome+'">'+nome+'</option>'
-    }
-    for(c=0;cenaDestino.length>c;c++){
-        sel=cenaDestino[c].value
-        cenaDestino[c].innerHTML=cenasLista
-        achou=false
-        for(c2=0;cenaDestino[c].options.length>c2;c2++){
-            if(sel == cenaDestino[c].options[c2].value){
-                cenaDestino[c].selectedIndex=c2
-                achou=true
-                break
-            }
-        }
-        if(!achou){
-            cenaDestino[c].selectedIndex=0
-            cenaDestino[c].style.borderColor="#ff2525"
-        }
-    }
-}
- */
 
 function updateLista(){
     cenasLista=[]

@@ -1,3 +1,11 @@
+html {
+    scroll-behavior: smooth;
+}
+:root{
+    --scene: #2e5e76;
+    --blink: #8ab1c0;
+}
+
 body{
     background-color: #1d191e;
     margin: 0px;
@@ -178,7 +186,7 @@ body{
 .cenas{
     position: relative;
     display: flex;
-    background-color: #2e5e76;
+    background-color: var(--scene) ;
     padding: 30px 50px 50px 50px;
     width: 400px;
     flex-direction: column;
@@ -410,4 +418,20 @@ textarea::-webkit-scrollbar-thumb{
         margin-top: 0px;
         height: 0px;
     }
+}
+
+.blink{
+    animation: .3s ease-in-out 4 blink forwards;
+}
+
+@keyframes blink {
+    0%{
+        background-color:var(--scene)  ;
+    }
+    50%{
+        background-color: var(--blink);
+    }
+    100%{
+        background-color:var(--scene)  ;
+    } 
 }

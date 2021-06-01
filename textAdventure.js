@@ -63,7 +63,7 @@ async function changeScene(cenaNome, ani) {
 
     button = ""
     for (c = 0; cena.opcoes.length > c; c++) {
-        button = button + "<button onclick='changeScene(\"" + removeHTMLentities(cena.opcoes[c][1].replace(/"/g,"\\\"").replace(/'/g,"\\\'")) + "\",true)' class=button >" + removeHTMLentities(cena.opcoes[c][0]) + "</button>"
+        button = button + "<button onclick='changeScene(\"" + removeHTMLentities(cena.opcoes[c][1].replace(/["']/g,"\\\"")) + "\",true)' class=button >" + removeHTMLentities(cena.opcoes[c][0]) + "</button>"
     }
     buttons.innerHTML = button
     bloco.style.opacity = 1
