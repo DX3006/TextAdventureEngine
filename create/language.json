@@ -2,6 +2,7 @@
     "en-US":{
         "menu":{
             "by":"Made by: DX",
+            "openInEditor":"Open in Editor",
             "buttonNew":"New",
             "buttonSave":"Save",
             "confirmSave":"Confirm",
@@ -27,7 +28,9 @@
             "scenesPlaceholder":"Scenes need a name",
             "selectDestination":"Select the destination scenes",
             "project":"Project",
-            "scene":"Scene"
+            "scene":"Scene",
+            "lastSession":"Last Session",
+            "importedProject":"Imported Project"
         },
         "pronpt":{
             "save":{
@@ -41,7 +44,8 @@
                 "reset":"Do you want to reset all scenes?"
             },
             "import":{
-                "insertLink":"Enter the link you want to import"
+                "insertLink":"Enter the link you want to import",
+                "fromUrl":"Do you want to import the project?\nThis will replace the current project"
             },
             "export":{
                 "invalidName":"Error when exporting!!\nOne or more scenes has an invalid name",
@@ -55,6 +59,7 @@
     "pt-BR":{
         "menu":{
             "by":"Feito por: DX",
+            "openInEditor":"Abrir no Editor",
             "buttonNew":"Novo",
             "buttonSave":"Salvar",
             "confirmSave":"Confimar",
@@ -80,7 +85,9 @@
             "scenesPlaceholder":"Cenas precisam de nome",
             "selectDestination":"Selecione a cenas destino",
             "project":"Projeto",
-            "scene":"Cena"
+            "scene":"Cena",
+            "lastSession":"Ultima Sessão",
+            "importedProject":"Projeto Importado"
         },
         "pronpt":{
             "save":{
@@ -94,7 +101,8 @@
                 "reset":"Você deseja redefinir todas as cenas?"
             },
             "import":{
-                "insertLink":"Insira o link que deseja importar"
+                "insertLink":"Insira o link que deseja importar",
+                "fromUrl":"Dejeja importar o projeto?\nIsso substituira o projeto atual"
             },
             "export":{
                 "invalidName":"Não é possivel Exportar!!\nUma ou mais cenas tem um nome invalido",

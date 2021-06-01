@@ -1,4 +1,3 @@
-//cenas={}
 
 // engineLink="http://127.0.0.1:5500/index.html"
 engineLink="https://dx3006.github.io/TextAdventureEngine/"
@@ -41,16 +40,37 @@ async function init(){
     carregarLocal()
 }
 
+function importFromUrl(url,menssage){
+    hash = decodeURI(url)
+    var match = hash.match(/#cenas=([^]+)/);
+    if (match) {
+        if(menssage==undefined||confirm(menssage)){
+            if(match[1].indexOf("{")==-1){
+                convert=LZString.decompressFromEncodedURIComponent(match[1])
+            }else{
+                convert=match[1]
+            }
+            cenasImport=JSON.parse(convert)
+            config.salvas[config.atual.nome+" "+language.info.lastSession]=config.atual.cena;
+            salvar.value=language.info.importedProject;
+            limparCenas()
+            importCenas(cenasImport)
+            salvarLocal()
+            carregarCenasSalvas()
+        }   
+        return true     
+    }
+    return false
+
+}
+
+
 function carregarLocal(){
     if(config){
         config=JSON.parse(config)
-        //console.log("config carregadas")
-        //console.log(config)
         salvar.value=config.atual.nome
-        if(config.atual.cena.inicio != undefined){
-            importCenas(config.atual.cena)
-        }
-        carregarCenasSalvas()        
+        importCenas(config.atual.cena)
+        carregarCenasSalvas()
     }else{
         console.log("criar config")
         salvar.value=language.info.project+" 1"
@@ -63,6 +83,11 @@ function carregarLocal(){
         }
         addScene()
     }
+    if(importFromUrl()){//document.location.hash,language.pronpt.import.fromUrl
+        window.history.pushState(language.info.importedProject, language.info.importedProject ,window.location.protocol+"//"+window.location.host+window.location.pathname)
+    }
+    
+
     
 }
 function salvarLocal(){
@@ -161,21 +186,7 @@ function confirmNovo(){
 
 function confirmImport(){
     url=prompt(language.pronpt.import.insertLink);
-    hash = decodeURI(url)
-    //console.log(hash)
-    var match = hash.match(/#cenas=([^]+)/);
-    if (match) {
-        if(match[1].indexOf("{")==-1){
-            convert=LZString.decompressFromEncodedURIComponent(match[1])
-        }else{
-            convert=match[1]
-        }
-        //console.log(match[1])
-        cenasImport=JSON.parse(convert)
-        limparCenas()
-        importCenas(cenasImport)
-        salvarLocal()
-    }
+    importFromUrl(url)
 }
 
 function confirmExport(){
@@ -583,7 +594,9 @@ async function changeLanguage(lang){
         //console.log(language[changeLang[c1]])
         key=Object.keys(language[changeLang[c1]])
         for(c2=0;key.length>c2;c2++){
-            document.getElementById(key[c2]).innerHTML=language[changeLang[c1]][key[c2]]
+            if(document.getElementById(key[c2])){
+                document.getElementById(key[c2]).innerHTML=language[changeLang[c1]][key[c2]]
+            }
         }
     }
     document.getElementsByClassName("cena")[0].placeholder=language.info.scenesPlaceholder

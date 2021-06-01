@@ -1,15 +1,13 @@
 cena = {}
 
 editorLink="https://dx3006.github.io/TextAdventureEngine/create/"
-
-function init() {
-
-}
+// editorLink="http://127.0.0.1:5500/create/"
 
 title = document.getElementById("title")
 text = document.getElementById("text")
 buttons = document.getElementById("buttons")
 bloco = document.getElementById("bloco")
+document.getElementById("openInEditor").addEventListener('click', openInEditor ,false);
 
 function sleepTime(timeS) {
     return new Promise((resolve, reject) => {
@@ -34,6 +32,13 @@ async function setURL(cenaNome) {
     } else {
         window.history.pushState("object or string", "Title", window.location.protocol + "//" + window.location.host + window.location.pathname + document.location.hash + "&cena=" + cenaNome)
     }
+}
+
+function openInEditor(){
+
+    stt=JSON.stringify(cenas)
+    comp= LZString.compressToEncodedURIComponent(stt)
+    window.open(editorLink+"#cenas="+comp);
 
 }
 
@@ -70,6 +75,20 @@ async function changeScene(cenaNome, ani) {
 
 
 }
+
+async function changeLanguage(lang){
+    allLanguage = await fetch('create/language.json').then(function (response) {
+        return response.json();
+    })  
+    if(allLanguage[lang]==undefined){
+        lang="en-US"
+    }
+    language=allLanguage[lang]
+    document.getElementById("by").innerHTML= language.menu.by
+    document.getElementById("openInEditor").innerHTML= language.menu.openInEditor
+}
+
+changeLanguage(navigator.language)
 
 hash = decodeURI(document.location.hash)
 var match = hash.match(/#cenas=([^]+)/);
