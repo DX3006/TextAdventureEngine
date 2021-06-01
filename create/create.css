@@ -65,6 +65,12 @@ body{
     overflow: hidden;
     z-index: 1;
 }
+#logo{
+    display: inline-block;
+    margin: 5px;
+    transition: transform ease-in-out .1s,background-color ease-in-out .06s;
+    z-index: 1;
+}
 .menuOld{
     display: inline-block;
     font-family: Lato;
