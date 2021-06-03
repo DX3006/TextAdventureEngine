@@ -217,6 +217,9 @@ function abrirCarregar(){
         carregarT=true
         carregar.classList.remove("fechar")
         confimarCarregar.classList.remove("fechar")
+        salvarT=false
+        salvar.classList.add("fechar")
+        confimarSalvar.classList.add("fechar")
     }
 }
 salvarT=false
@@ -229,6 +232,9 @@ function abrirSalvar(){
         salvarT=true
         salvar.classList.remove("fechar")
         confimarSalvar.classList.remove("fechar")
+        carregarT=false
+        carregar.classList.add("fechar")
+        confimarCarregar.classList.add("fechar")
     }
 }
 

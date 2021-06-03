@@ -5,6 +5,23 @@ html {
     --scene: #2e5e76;
     --blink: #8ab1c0;
 }
+@media (max-width: 1450px) { 
+    #addScene{
+        top: 55px;
+    }
+    #center{   
+        top: 86px;
+    }
+}
+@media (min-width: 1450px) { 
+    #addScene{ 
+        
+        top: 13px;
+    }
+    #center{   
+        top: 66px;
+    }
+}
 
 body{
     background-color: #1d191e;
@@ -98,7 +115,6 @@ body{
     display: inline-block;
     position: absolute;
     left: 50%;
-    top: 13px;
     transform: translateX(-50%);
     font-family: Lato;
     font-size: 20px;
@@ -177,7 +193,6 @@ body{
     height: auto;
     width: 100%;
     position: relative;
-    top: 66px;
 }
 #bloco{
     display: flex;
